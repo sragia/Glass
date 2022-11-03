@@ -11,6 +11,11 @@ Constants.TEXT_XPADDING = 15
 
 Constants.ENV = "retail"
 
+Constants.DOCK_POSITION = {
+  TOP = 'top',
+  BOTTOM = 'bottom'
+}
+
 if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
   Constants.ENV = "classic"
 end

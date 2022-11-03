@@ -45,6 +45,7 @@ Core.defaults = {
     fontFlags = "",
     frameWidth = 450,
     frameHeight = 230,
+    dockPosition = 'top',
     positionAnchor = {
       point = "BOTTOMLEFT",
       xOfs = 20,

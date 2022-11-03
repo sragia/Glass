@@ -21,6 +21,8 @@ local ANCHORS = {
 }
 local FLAGS = { [""] = "None", ["OUTLINE"] = "Outline", ["OUTLINE, MONOCHROME"] = "Outline Monochrome" }
 
+local DOCK_POSITION = { [Constants.DOCK_POSITION.TOP] = "Top", [Constants.DOCK_POSITION.BOTTOM] = "Bottom" }
+
 function C:OnEnable()
   local options = {
       name = "Glass",
@@ -102,6 +104,27 @@ function C:OnEnable()
                   set = function (_, input)
                     Core.db.profile.fontFlags = input
                     Core:Dispatch(UpdateConfig("font"))
+                  end
+                }
+              },
+            },
+            section25 = {
+              name = "Dock",
+              type = "group",
+              inline = true,
+              order = 3.5,
+              args = {
+                fontFlags = {
+                  name = "Dock Position",
+                  type = "select",
+                  order = 1,
+                  values = DOCK_POSITION,
+                  get = function ()
+                    return Core.db.profile.dockPosition
+                  end,
+                  set = function (_, input)
+                    Core.db.profile.dockPosition = input
+                    Core:Dispatch(UpdateConfig("dock"))
                   end
                 }
               },

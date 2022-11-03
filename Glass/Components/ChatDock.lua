@@ -29,7 +29,11 @@ function ChatDockMixin:Init(parent)
   self:SetWidth(Core.db.profile.frameWidth)
   self:SetHeight(Constants.DOCK_HEIGHT)
   self:ClearAllPoints()
-  self:SetPoint("TOPLEFT", parent, "TOPLEFT")
+  if (Core.db.profile.dockPosition == Constants.DOCK_POSITION.TOP) then
+    self:SetPoint("TOPLEFT", parent, "TOPLEFT")
+  else 
+    self:SetPoint("TOPLEFT", parent, "BOTTOMLEFT", 0, -5)
+  end
   self:SetFadeInDuration(0.6)
   self:SetFadeOutDuration(0.6)
 
@@ -81,6 +85,13 @@ function ChatDockMixin:Init(parent)
           self:SetWidth(Core.db.profile.frameWidth)
 
           self:SetGradientBackground(50, 250, Colors.black, opacity)
+        end
+        if key == "dock" then
+          if (Core.db.profile.dockPosition == Constants.DOCK_POSITION.TOP) then
+            self:SetPoint("TOPLEFT", parent, "TOPLEFT")
+          else 
+            self:SetPoint("TOPLEFT", parent, "BOTTOMLEFT", 0, -5)
+          end
         end
       end)
     }

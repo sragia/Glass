@@ -33,7 +33,7 @@ local UNLOCK_WINDOW = UNLOCK_WINDOW
 
 local tabTexs = {
   '',
-  'Selected',
+  'Active',
   'Highlight'
 }
 
@@ -45,9 +45,9 @@ function ChatTabMixin:Init(slidingMessageFrame)
   local dropDown = _G[self.chatFrame:GetName().."TabDropDown"]
 
   for _, texName in ipairs(tabTexs) do
-    _G[self:GetName()..texName..'Left']:SetTexture()
-    _G[self:GetName()..texName..'Middle']:SetTexture()
-    _G[self:GetName()..texName..'Right']:SetTexture()
+    self[texName..'Left']:SetTexture()
+    self[texName..'Middle']:SetTexture()
+    self[texName..'Right']:SetTexture()
   end
 
   self:SetHeight(Constants.DOCK_HEIGHT)
@@ -171,6 +171,7 @@ end
 
 Core.Components.CreateChatTab = function (slidingMessageFrame)
   local frame = _G[slidingMessageFrame.chatFrame:GetName().."Tab"]
+  ViragDevTool_AddData(frame)
   local object = Mixin(frame, ChatTabMixin)
   AceHook:Embed(object)
   object:Init(slidingMessageFrame)
